@@ -69,7 +69,7 @@ def printDot(op_code, cur_count, max_count=None, message=''):
         print('.', end='')
 
 class BaseRelease:
-    def __init__(self, mGit, version, commit='HEAD', git_ssh=False, git_org='FreeRTOS', repo_path=None, branch='main', do_not_push=False):
+    def __init__(self, mGit, version, commit='HEAD', git_ssh=False, git_org='xlin7799', repo_path=None, branch='main', do_not_push=False):
         self.version = version
         self.tag_msg = 'Autocreated by FreeRTOS Git Tools.'
         self.commit = commit
