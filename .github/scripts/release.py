@@ -224,7 +224,7 @@ class BaseRelease:
 
 
 class KernelRelease(BaseRelease):
-    def __init__(self, mGit, version, commit='HEAD', git_ssh=False, git_org='FreeRTOS', repo_path=None, branch='main', main_br_version='', do_not_push=False):
+    def __init__(self, mGit, version, commit='HEAD', git_ssh=False, git_org='xlin7799', repo_path=None, branch='main', main_br_version='', do_not_push=False):
         super().__init__(mGit, version, commit=commit, git_ssh=git_ssh, git_org=git_org, repo_path=repo_path, branch=branch, do_not_push=do_not_push)
 
         self.repo_name = '%s/FreeRTOS-Kernel' % self.git_org
@@ -280,8 +280,9 @@ class KernelRelease(BaseRelease):
         info('Downloading fresh copy of %s for packing...' % zip_name, end='')
         packaged_repo = Repo.clone_from(self.getRemoteEndpoint(self.repo_name),
                                         rel_repo_path,
-                                        multi_options=['--depth=1', '--branch=%s' % self.tag, '--recurse-submodules'],
-                                        progress=printDot)
+                                        multi_options=['--depth=1', '-b%s' % self.tag, '--recurse-submodules'],
+                                        progress=printDot,
+                                       branch=self.branch)
         print()
 
         # Prune then zip package.
