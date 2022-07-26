@@ -368,7 +368,7 @@ class KernelRelease(BaseRelease):
 
 
 class FreertosRelease(BaseRelease):
-    def __init__(self, mGit, version, commit, git_ssh=False, git_org='FreeRTOS', repo_path=None, branch='main', do_not_push=False):
+    def __init__(self, mGit, version, commit, git_ssh=False, git_org='xlin7799', repo_path=None, branch='main', do_not_push=False):
         super().__init__(mGit, version, commit, git_ssh=git_ssh, git_org=git_org, repo_path=repo_path, branch=branch, do_not_push=do_not_push)
 
         self.repo_name = '%s/FreeRTOS' % self.git_org
@@ -618,7 +618,7 @@ def main():
         info('Starting kernel release...')
         logIndentPush()
         rel_kernel = KernelRelease(mGit, args.new_kernel_version, args.kernel_commit, git_ssh=args.use_git_ssh,
-                                   git_org=args.git_org, repo_path=args.kernel_repo_path, branch=args.kernel_repo_branch,
+                                   git_org='xlin7799', repo_path=args.kernel_repo_path, branch=args.kernel_repo_branch,
                                    main_br_version=args.new_kernel_main_br_version, do_not_push=args.do_not_push)
         rel_kernel.autoRelease()
         logIndentPop()
@@ -627,7 +627,7 @@ def main():
         info('Starting core release...')
         logIndentPush()
         rel_freertos = FreertosRelease(mGit, args.new_core_version, args.core_commit, git_ssh=args.use_git_ssh,
-                                       git_org=args.git_org, repo_path=args.core_repo_path, branch=args.core_repo_branch,
+                                       git_org='xlin7799', repo_path=args.core_repo_path, branch=args.core_repo_branch,
                                        do_not_push=args.do_not_push)
         rel_freertos.autoRelease()
         logIndentPop()
@@ -636,7 +636,7 @@ def main():
     if args.rollback_kernel_version:
         info('Starting kernel rollback...')
         rel_kernel = KernelRelease(mGit, args.rollback_kernel_version, args.kernel_commit, git_ssh=args.use_git_ssh,
-                                   git_org=args.git_org, repo_path=args.kernel_repo_path, branch=args.kernel_repo_branch,
+                                   git_org='xlin7799', repo_path=args.kernel_repo_path, branch=args.kernel_repo_branch,
                                    do_not_push=args.do_not_push)
         logIndentPush()
         rel_kernel.restorePriorToRelease()
@@ -646,7 +646,7 @@ def main():
         info('Starting core rollback...')
         logIndentPush()
         rel_freertos = FreertosRelease(mGit, args.rollback_core_version, args.core_commit, git_ssh=args.use_git_ssh,
-                                       git_org=args.git_org, repo_path=args.core_repo_path, branch=args.core_repo_branch,
+                                       git_org='xlin7799', repo_path=args.core_repo_path, branch=args.core_repo_branch,
                                        do_not_push=args.do_not_push)
         rel_freertos.restorePriorToRelease()
         logIndentPop()
