@@ -280,9 +280,8 @@ class KernelRelease(BaseRelease):
         info('Downloading fresh copy of %s for packing...' % zip_name, end='')
         packaged_repo = Repo.clone_from(self.getRemoteEndpoint(self.repo_name),
                                         rel_repo_path,
-                                        multi_options=['--depth=1', '-b%s' % self.tag, '--recurse-submodules'],
-                                        progress=printDot,
-                                        branch=self.branch)
+                                        multi_options=['--depth=1', '--branch=%s' % self.tag, '--recurse-submodules'],
+                                        progress=printDot)
         print()
 
         # Prune then zip package.
